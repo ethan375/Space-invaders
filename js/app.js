@@ -52,7 +52,10 @@ let player = ()=>{
 
 let laser = ()=>{
   ctx.fillStyle = 'rgb(200, 30, 50)'
-  ctx.fillRect(laserX + 8 , laserY, 15, 20);
+  ctx.fillRect(laserX + 10 , laserY, 10, 20);
+  if(laserY < 60){
+    laserReset();
+  }
 };
 
 
@@ -63,20 +66,32 @@ document.addEventListener('keydown', function(event){
   }else if(key == 37){
     playerX = playerX - 10;
   }else if(key == 32){
-    laserY = laserY - 30
+    animateLaser();
   }
   // console.log(key)
   // console.log(playerX)
 });
 
+let laserReset = ()=>{
+   laserX = laserX;
+   laserY = 650
+}
+
+let animateLaser = ()=>{
+    for(let i=0; i <70; i++){
+      laserY -=10
+    }
+}
 
 
-let animateCanvas = function(){
+
+let animateCanvas = ()=>{
   ctx.clearRect(0, 0, canvas.width, canvas.height);
   drawAliens();
   player();
   laser();
   window.requestAnimationFrame(animateCanvas);
+
 };
 
 animateCanvas();
