@@ -6,7 +6,9 @@ let ctx = canvas.getContext('2d');
 
 // global variables
 let playerX = 350; //this is the starting x coordinate for the player 
-
+let laserX = playerX //this will be the position of the laser when fired, being equal to player's x coordinate will make it appear as if it is coming from the players ship
+let laserY = 650; //this will be y coordinate for the bullet which will travel upwards on y axis when shot
+let FPS = 60; //this is our frames per second
 
 let drawAliens = ()=>{
   ctx.fillStyle = 'rgb(20, 200, 30)';
@@ -48,6 +50,11 @@ let player = ()=>{
   ctx.fillRect(playerX, 670, 30, 20)
 }
 
+let laser = ()=>{
+  ctx.fillStyle = 'rgb(200, 30, 50)'
+  ctx.fillRect(laserX + 8 , laserY, 15, 20);
+};
+
 
 document.addEventListener('keydown', function(event){
   let key = event.which;
@@ -55,9 +62,11 @@ document.addEventListener('keydown', function(event){
     playerX = playerX + 10;
   }else if(key == 37){
     playerX = playerX - 10;
+  }else if(key == 32){
+    laserY = laserY - 30
   }
-  console.log(key)
-  console.log(playerX)
+  // console.log(key)
+  // console.log(playerX)
 });
 
 
@@ -66,6 +75,7 @@ let animateCanvas = function(){
   ctx.clearRect(0, 0, canvas.width, canvas.height);
   drawAliens();
   player();
+  laser();
   window.requestAnimationFrame(animateCanvas);
 };
 
