@@ -3,7 +3,12 @@ console.log("JS file linked");
 let canvas = document.getElementById('myCanvas');
 // canvas context will be a 2d game
 let ctx = canvas.getContext('2d');
-let drawAliens = function(){
+
+// global variables
+let playerX = 350; //this is the starting x coordinate for the player 
+
+
+let drawAliens = ()=>{
   ctx.fillStyle = 'rgb(20, 200, 30)';
   ctx.fillRect(30,30,30,20)
   ctx.fillStyle = 'rgb(20, 200, 30)';
@@ -38,13 +43,34 @@ let drawAliens = function(){
   ctx.fillRect(630,30,30,20)
 }
 
-let player = function(){
+let player = ()=>{
   ctx.fillStyle = 'rgb(20, 20, 200)'
-  ctx.fillRect(350, 670, 30, 20)
+  ctx.fillRect(playerX, 670, 30, 20)
 }
 
-aliens();
-player();
+
+document.addEventListener('keydown', function(event){
+  let key = event.which;
+  if(key == 39){
+    playerX = playerX + 10;
+  }else if(key == 37){
+    playerX = playerX - 10;
+  }
+  console.log(key)
+  console.log(playerX)
+});
+
+
+
+let animateCanvas = function(){
+  ctx.clearRect(0, 0, canvas.width, canvas.height);
+  drawAliens();
+  player();
+  window.requestAnimationFrame(animateCanvas);
+};
+
+animateCanvas();
+
 
 
 
