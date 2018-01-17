@@ -53,6 +53,7 @@ let player = ()=>{
 let laser = ()=>{
   ctx.fillStyle = 'rgb(200, 30, 50)'
   ctx.fillRect(laserX + 10 , laserY, 10, 20);
+  laserY -= 10
   if(laserY < 60){
     laserReset();
   }
@@ -66,7 +67,7 @@ document.addEventListener('keydown', function(event){
   }else if(key == 37){
     playerX = playerX - 10;
   }else if(key == 32){
-    animateLaser();
+   Laser();
   }
   // console.log(key)
   // console.log(playerX)
@@ -77,11 +78,7 @@ let laserReset = ()=>{
    laserY = 650
 }
 
-let animateLaser = ()=>{
-    for(let i=0; i <70; i++){
-      laserY -=10
-    }
-}
+
 
 
 
