@@ -1,29 +1,25 @@
 console.log("JS file linked");
 // grab the canvas by the id
-let canvas = document.getElementById('myCanvas');
+const canvas = document.getElementById('myCanvas');
 // canvas context will be a 2d game
-let ctx = canvas.getContext('2d');
+const ctx = canvas.getContext('2d');
 
 // global variables
 let playerX = 350; //this is the starting x coordinate for the player 
 //let laserX = playerX //this will be the position of the laser when fired, being equal to player's x coordinate will make it appear as if it is coming from the players ship
-let laserY = 650; //this will be y coordinate for the bullet which will travel upwards on y axis when shot
-let laserX = playerX;
+const laserY = 650; //this will be y coordinate for the bullet which will travel upwards on y axis when shot
+const laserX = playerX;
 // let bullets = [];
-// let aliens = [];
+let alienX = 80;
+const alienY = 70;
+// const aliens = [10];
 
-// window.onload =()=>{
-//   drawAliens();
-//   player();
-//   laser();
-// }
 
-let drawAliens = ()=>{
-  for(let i =0; i<10;i++){
-    ctx.fillStyle = 'rgb(20, 200, 30)';
-    ctx.fillRect(Math.floor((Math.random()*700)+5), 30, 30, 20)
-  }
+let aliens = (x, y)=>{
+  this.x = x;
+  this.y = y;
 }
+
 
 let player = ()=>{
   ctx.fillStyle = 'rgb(20, 20, 200)'
@@ -49,11 +45,8 @@ document.addEventListener('keydown', function(event){
     playerX = playerX + 10;
   }else if(key == 37){
     playerX = playerX - 10;
-  }else if(key == 32){
-    setInterval(laser, 500)  
+  }else if(key == 32){ 
   }
-  // console.log(key)
-  // console.log(playerX)
 });
 
 let laserReset = ()=>{
@@ -65,14 +58,13 @@ let laserReset = ()=>{
 
 
 
-let animateCanvas = ()=>{
-  ctx.clearRect(0, 0, canvas.width, canvas.height);
-  player();
-  drawAliens();
-  window.requestAnimationFrame(animateCanvas);
-
-};
-animateCanvas();
+// let animateCanvas = ()=>{
+//   ctx.clearRect(0, 0, canvas.width, canvas.height);
+//   player();
+//   animateAliens();
+//   window.requestAnimationFrame(animateCanvas);
+// };
+// animateCanvas();
 
 
 
